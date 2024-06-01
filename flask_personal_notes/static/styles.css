@@ -20,8 +20,8 @@ nav {
 .nav-links {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Aligns items to the start and end of the container */
-    padding: 0 20px; /* Add padding to create space between items and edges */
+    justify-content: space-between;
+    padding: 0 20px;
 }
 
 .nav-links a {
@@ -36,7 +36,6 @@ nav {
     margin-right: 10px;
 }
 
-/* Remove margin-right for the last link to prevent extra space */
 .nav-links a:last-child {
     margin-right: 0;
 }

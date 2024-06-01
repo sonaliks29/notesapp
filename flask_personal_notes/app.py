@@ -62,8 +62,22 @@ def logout():
 @app.route('/')
 @login_required
 def index():
-    notes = Note.query.filter_by(user_id=current_user.id).order_by(Note.date_created.desc()).all()
-    return render_template('index.html', notes=notes)
+    return render_template('index.html', notes=current_user.notes)
+
+@app.route('/notes')
+@login_required
+def notes():
+    return render_template('notes.html', notes=current_user.notes)
+
+@app.route('/courses')
+@login_required
+def courses():
+    return render_template('courses.html', notes=current_user.notes)
+
+@app.route('/subjects')
+@login_required
+def subjects():
+    return render_template('subjects.html', notes=current_user.notes)
 
 @app.route('/add', methods=['POST'])
 @login_required
@@ -73,7 +87,8 @@ def add_note():
     new_note = Note(title=title, content=content, user_id=current_user.id)
     db.session.add(new_note)
     db.session.commit()
-    return redirect(url_for('index'))
+    referrer = request.referrer
+    return redirect(referrer)
 
 @app.route('/delete/<int:id>')
 @login_required
@@ -82,7 +97,8 @@ def delete(id):
     if note:
         db.session.delete(note)
         db.session.commit()
-    return redirect(url_for('index'))
+    referrer = request.referrer
+    return redirect(referrer)
 
 @app.route('/update/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -92,7 +108,7 @@ def update(id):
         note.title = request.form.get('title')
         note.content = request.form.get('content')
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('index'))  # Redirect to index.html after updating
     return render_template('update.html', note=note)
 
 @app.route('/search')
@@ -102,7 +118,8 @@ def search():
     notes = Note.query.filter(
         (Note.content.ilike(f'%{query}%') | Note.title.ilike(f'%{query}%'))
     ).filter_by(user_id=current_user.id).all()
-    return render_template('index.html', notes=notes)
+    referrer = request.referrer
+    return render_template(referrer.split("/")[-1] + '.html', notes=notes, query=query)
 
 if __name__ == '__main__':
     app.run(debug=True)

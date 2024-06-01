@@ -4,13 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Note</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #444;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        form input[type="text"],
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        form button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #5cb85c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        form button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
     <h1>Update Note</h1>
-    <form action="/update/{{ note.id }}" method="post">
+    <form id="updateForm" action="/update/{{ note.id }}" method="post">
         <input type="text" name="title" value="{{ note.title }}" required>
         <textarea name="content" required>{{ note.content }}</textarea>
         <button type="submit">Update Note</button>
     </form>
+    <script>
+        document.getElementById('updateForm').addEventListener('submit', function() {
+            setTimeout(function() {
+                window.location.href = '/index.html';
+            }, 1000); // Redirect after 1 second
+        });
+    </script>
 </body>
 </html>

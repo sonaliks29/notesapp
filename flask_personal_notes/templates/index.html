@@ -3,36 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Notes</title>
+    <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Personal Notes</h1>
+    <h1>Welcome!</h1>
     <nav>
         <div class="nav-links">
-            <a href="/">Home</a>
+            <a href="/notes" class="button">Personal Notes</a>
+            <a href="/courses" class="button">Courses Taken</a>
+            <a href="/subjects" class="button">Subjects Notes</a>
             <a href="/logout">Logout</a>
         </div>
-        <form action="/search" method="get">
+        <!-- <form action="/search" method="get">
             <input type="text" name="query" placeholder="Search Notes" required>
             <button type="submit">Search</button>
-        </form>
-    </nav>    
-    <form action="/add" method="post">
-        <input type="text" name="title" placeholder="Note Title" required>
-        <textarea name="content" placeholder="Note Content" required></textarea>
-        <button type="submit">Add Note</button>
-    </form>
-    <ul>
-        {% for note in notes %}
-        <li>
-            <h2>{{ note.title }}</h2>
-            <p>{{ note.content }}</p>
-            <small>{{ note.date_created }}</small>
-            <a href="/delete/{{ note.id }}">Delete</a>
-            <a href="/update/{{ note.id }}">Update</a>
-        </li>
-        {% endfor %}
-    </ul>
+        </form> -->
+    </nav>
 </body>
 </html>

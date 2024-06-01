@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subject Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Subject Notes</h1>
+    <nav>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Search Notes" required>
+            <button type="submit">Search</button>
+        </form>
+    </nav>    
+    <form action="/add" method="post">
+        <input type="text" name="title" placeholder="Subject Title" required>
+        <textarea name="content" placeholder="Subject Notes" required></textarea>
+        <button type="submit">Add Note</button>
+    </form>
+    <ul>
+        {% for note in notes %}
+        <li>
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+            <small>{{ note.date_created }}</small>
+            <a href="/delete/{{ note.id }}">Delete</a>
+            <a href="/update/{{ note.id }}">Update</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
