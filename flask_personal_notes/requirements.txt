@@ -1,0 +1,5 @@
+flask-login
+Flask
+Flask-SQLAlchemy 
+psycopg2-binary
+sqlalchemy
