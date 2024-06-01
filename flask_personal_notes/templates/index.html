@@ -9,16 +9,19 @@
 <body>
     <h1>Personal Notes</h1>
     <nav>
-        <a href="/">Home</a>
-    </nav>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <form action="/search" method="get">
+            <input type="text" name="query" placeholder="Search Notes" required>
+            <button type="submit">Search</button>
+        </form>
+    </nav>    
     <form action="/add" method="post">
         <input type="text" name="title" placeholder="Note Title" required>
         <textarea name="content" placeholder="Note Content" required></textarea>
         <button type="submit">Add Note</button>
-    </form>
-    <form action="/search" method="get">
-        <input type="text" name="query" placeholder="Search Notes" required>
-        <button type="submit">Search</button>
     </form>
     <ul>
         {% for note in notes %}

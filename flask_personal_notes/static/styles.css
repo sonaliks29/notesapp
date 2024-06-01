@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
@@ -19,7 +17,14 @@ nav {
     margin-bottom: 20px;
 }
 
-nav a {
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Aligns items to the start and end of the container */
+    padding: 0 20px; /* Add padding to create space between items and edges */
+}
+
+.nav-links a {
     text-decoration: none;
     color: #5cb85c;
     background-color: #fff;
@@ -28,9 +33,15 @@ nav a {
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
+    margin-right: 10px;
 }
 
-nav a:hover {
+/* Remove margin-right for the last link to prevent extra space */
+.nav-links a:last-child {
+    margin-right: 0;
+}
+
+.nav-links a:hover {
     background-color: #4cae4c;
     color: #fff;
 }
@@ -46,6 +57,7 @@ form {
 }
 
 form input[type="text"],
+form input[type="password"],
 form textarea {
     width: 100%;
     padding: 10px;
