@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Note</title>
+</head>
+<body>
+    <h1>Update Note</h1>
+    <form action="/update/{{ note.id }}" method="post">
+        <input type="text" name="title" value="{{ note.title }}" required>
+        <textarea name="content" required>{{ note.content }}</textarea>
+        <button type="submit">Update Note</button>
+    </form>
+</body>
+</html>
