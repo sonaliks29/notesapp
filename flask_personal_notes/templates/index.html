@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <h1>Personal Notes</h1>
+    <nav>
+        <a href="/">Home</a>
+    </nav>
     <form action="/add" method="post">
         <input type="text" name="title" placeholder="Note Title" required>
         <textarea name="content" placeholder="Note Content" required></textarea>
         <button type="submit">Add Note</button>
+    </form>
+    <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Search Notes" required>
+        <button type="submit">Search</button>
     </form>
     <ul>
         {% for note in notes %}

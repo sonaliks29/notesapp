@@ -57,5 +57,11 @@ def update(id):
     else:
         return render_template('update.html', note=note)
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query')
+    notes = Note.query.filter(Note.title.contains(query) | Note.content.contains(query)).order_by(Note.date_created.desc()).all()
+    return render_template('index.html', notes=notes)
+
 if __name__ == '__main__':
     app.run(debug=True)
